@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
+import { notifyAdmin } from "@/lib/admin-notify";
 
 // Use service role for creating org/user records
 function getAdminClient() {
@@ -55,6 +56,19 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Notify admin of new signup
+    notifyAdmin({
+      event: "new_signup",
+      title: "New Signup on AgentRFP",
+      message: `*${fullName}* just signed up with org *${orgName}*`,
+      details: {
+        Name: fullName,
+        Email: email,
+        Organization: orgName,
+        "Signed Up": new Date().toLocaleString(),
+      },
+    }).catch(() => {});
 
     return NextResponse.json({ orgId: org.id });
   } catch (err) {

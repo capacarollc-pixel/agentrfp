@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createAdmin } from "@supabase/supabase-js";
+import { notifyAdmin } from "@/lib/admin-notify";
 
 function getAdminClient() {
   return createAdmin(
@@ -122,6 +123,19 @@ export async function GET(request: NextRequest) {
               full_name: fullName,
               role: "admin",
             });
+
+            notifyAdmin({
+              event: "new_signup",
+              title: "New Signup on AgentRFP",
+              message: `*${fullName}* signed up via SSO with org *${orgName}*`,
+              details: {
+                Name: fullName,
+                Email: email,
+                Organization: orgName,
+                Method: "SSO (Google/Microsoft/Okta)",
+                "Signed Up": new Date().toLocaleString(),
+              },
+            }).catch(() => {});
           }
         }
       }
