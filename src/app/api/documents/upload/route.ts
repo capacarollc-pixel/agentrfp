@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { extractText, chunkText } from "@/lib/extract";
+import { checkLimit } from "@/lib/usage";
 
 function getAdminClient() {
   return createAdmin(
@@ -32,6 +33,12 @@ export async function POST(request: NextRequest) {
 
     if (!profile) {
       return NextResponse.json({ error: "User profile not found" }, { status: 404 });
+    }
+
+    // Check usage limits
+    const limitCheck = await checkLimit(profile.org_id, "documents");
+    if (!limitCheck.allowed) {
+      return NextResponse.json({ error: limitCheck.message }, { status: 403 });
     }
 
     // Parse form data

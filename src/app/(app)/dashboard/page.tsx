@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
+import { UsageMeter } from "@/components/usage-meter";
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
@@ -109,6 +110,11 @@ export default async function DashboardPage() {
             {memberCount}
           </p>
         </div>
+      </div>
+
+      {/* Usage meter */}
+      <div className="mb-8">
+        <UsageMeter />
       </div>
 
       {/* Quick actions */}
