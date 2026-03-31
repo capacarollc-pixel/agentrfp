@@ -134,7 +134,7 @@ export default function TermsPage() {
           <br />
           <strong>Capacaro LLC</strong>
           <br />
-          Email: legal@agentrfp.ai
+          Email: info@agentrfp.ai
         </p>
       </article>
     </div>

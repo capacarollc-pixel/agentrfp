@@ -136,7 +136,7 @@ export default function PrivacyPage() {
           <li><strong>Objection:</strong> Object to processing of your personal data</li>
         </ul>
         <p className="text-gray-700 leading-relaxed mt-3">
-          To exercise any of these rights, contact us at privacy@agentrfp.ai.
+          To exercise any of these rights, contact us at info@agentrfp.ai.
         </p>
 
         <h2 className="text-xl font-bold text-gray-900 mt-8 mb-3">8. Cookies</h2>
@@ -172,7 +172,7 @@ export default function PrivacyPage() {
           <br />
           <strong>Capacaro LLC</strong>
           <br />
-          Email: privacy@agentrfp.ai
+          Email: info@agentrfp.ai
         </p>
       </article>
     </div>

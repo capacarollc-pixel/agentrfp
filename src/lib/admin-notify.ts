@@ -47,7 +47,7 @@ async function sendEmail(payload: AdminEvent) {
       Authorization: `Bearer ${RESEND_API_KEY}`,
     },
     body: JSON.stringify({
-      from: "AgentRFP <notifications@agentrfp.ai>",
+      from: "AgentRFP <info@agentrfp.ai>",
       to: [ADMIN_EMAIL],
       subject: payload.title,
       html: `
