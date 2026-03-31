@@ -52,7 +52,9 @@ function Icon({ name, className }: { name: string; className?: string }) {
   return <>{icons[name]}</>;
 }
 
-export function Sidebar({ orgName }: { orgName?: string }) {
+export function Sidebar({ orgName, userEmail }: { orgName?: string; userEmail?: string }) {
+  const PLATFORM_ADMINS = ["capacarollc@gmail.com"];
+  const isPlatformAdmin = userEmail ? PLATFORM_ADMINS.includes(userEmail) : false;
   const pathname = usePathname();
   const router = useRouter();
   const supabase = createClient();
@@ -93,6 +95,25 @@ export function Sidebar({ orgName }: { orgName?: string }) {
           );
         })}
       </nav>
+
+      {/* Platform admin link */}
+      {isPlatformAdmin && (
+        <div className="px-4 pb-2">
+          <Link
+            href="/admin"
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              pathname.startsWith("/admin")
+                ? "bg-red-50 text-red-700"
+                : "text-gray-400 hover:bg-gray-50 hover:text-gray-600"
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            </svg>
+            Platform Admin
+          </Link>
+        </div>
+      )}
 
       {/* Sign out */}
       <div className="p-4 border-t border-gray-100">

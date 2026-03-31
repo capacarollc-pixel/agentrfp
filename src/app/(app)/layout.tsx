@@ -27,7 +27,7 @@ export default async function AppLayout({
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar orgName={user.organizations?.name} />
+      <Sidebar orgName={user.organizations?.name} userEmail={user.email} />
       <main className="flex-1 overflow-auto">
         <div className="p-8">{children}</div>
       </main>
