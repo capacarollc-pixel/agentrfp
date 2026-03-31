@@ -236,11 +236,15 @@ export default function HelpPage() {
           id="team"
           title="Team &amp; Collaboration"
           content={[
-            "Invite team members: Settings &rarr; Team &rarr; enter their email and click Send Invite.",
-            "Invited users can sign in with Google, Microsoft, Okta, or email/password &mdash; they auto-join your organization.",
-            "Roles: Admins can manage API keys, invites, integrations, and settings. Members can work on RFPs and knowledge base.",
-            "Domain auto-join: Set an allowed domain on your org so anyone with your company email auto-joins.",
-            "Pending invites are shown in the Team settings page.",
+            "<strong>How multiple users join the same org:</strong> There are three ways teammates can join your organization and share the same dashboard, RFPs, and knowledge base.",
+            "<strong>1. Invite (primary method):</strong> Go to Settings &rarr; Team &rarr; enter their email &rarr; Send Invite. When they sign up (email/password or SSO), they auto-join your org with the role you selected.",
+            "<strong>2. Domain auto-join:</strong> Set an allowed email domain on your org (e.g., acme.com). Anyone who signs up with an @acme.com email automatically joins your org &mdash; no invite needed.",
+            "<strong>3. SSO auto-join:</strong> If a user has a pending invite and signs in via Google, Microsoft, or Okta, they auto-join your org.",
+            "<strong>What everyone in an org shares:</strong> All RFPs, questions, answers, knowledge base documents, answer library, API keys, and integrations.",
+            "<strong>What's separate per user:</strong> Their own login credentials, question assignments, and personal activity in the audit trail.",
+            "<strong>Data isolation:</strong> Users in one org can never see another org's data. This is enforced at the database level (Row Level Security), not just in application code.",
+            "Roles: Admins can manage API keys, invites, integrations, connectors, and settings. Members can work on RFPs and knowledge base.",
+            "Pending invites are shown in the Team settings page. Admins can see who has been invited and when.",
           ]}
         />
 
