@@ -30,7 +30,17 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.$crisp=[];window.CRISP_WEBSITE_ID="a03e69f3-a9a3-47f8-bbaa-d0d6823f4fb7";
+              (function(){var d=document;var s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s)})();
+            `,
+          }}
+        />
+      </body>
     </html>
   );
 }
